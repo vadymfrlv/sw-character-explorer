@@ -1,3 +1,5 @@
+import { BREAKPOINTS } from 'constants/breakpoints';
+
 const theme = {
   colors: {
     white: '#FFFFFF',
