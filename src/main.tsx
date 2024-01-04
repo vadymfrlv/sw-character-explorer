@@ -4,6 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App.tsx';
 
+import 'styles/fonts.css';
+import 'styles/global.css';
+import 'styles/reset.css';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>

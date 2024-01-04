@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+
+  font-family: 'Oswald', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
