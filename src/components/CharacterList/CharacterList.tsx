@@ -1,6 +1,6 @@
 import { useCharacters } from 'hooks/useCharacters';
 import { ErrorBoundary } from 'components/Common/ErrorBoundary';
-import { CharacterItemSkeleton } from 'components/CharacterItemSkeleton/CharacterItemSkeleton';
+import { CharactersSkeleton } from 'components/CharactersSkeleton/CharactersSkeleton';
 import { CharacterItem } from 'components/CharacterItem/CharacterItem';
 import { Notification } from 'components/Common/Notification/Notification';
 
@@ -11,7 +11,7 @@ export const CharacterList = () => {
 
   return (
     <ErrorBoundary>
-      {isFetching && <CharacterItemSkeleton cards={10} />}
+      {isFetching && <CharactersSkeleton cards={10} />}
 
       {isSuccess && !isFetching && characters.length === 0 && (
         <Notification message="Nothing was found" />

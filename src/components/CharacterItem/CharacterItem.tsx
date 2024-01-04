@@ -4,8 +4,6 @@ import { Character } from 'types/character';
 import { formatDate } from 'utils/formatDate';
 import { extractIdFromUrl } from 'utils/extractIdFromUrl';
 
-import { CharacterItemSkeleton } from 'components/CharacterItemSkeleton/CharacterItemSkeleton';
-
 import {
   CharacterItemInfoLink,
   Name,
@@ -16,15 +14,13 @@ import {
 } from './CharacterItem.styled';
 
 export const CharacterItem = (props: Character & { isFetching: boolean; currentPage: number }) => {
-  const { name, birth_year, height, created, url, isFetching, currentPage } = props;
+  const { name, birth_year, height, created, url, currentPage } = props;
   const location = useLocation();
 
   const characterId = extractIdFromUrl(url);
   const formattedDate = formatDate(created);
 
-  return isFetching ? (
-    <CharacterItemSkeleton />
-  ) : (
+  return (
     <CharacterItemInfoLink
       to={`/character/${characterId}`}
       state={{ from: location, character: props, currentPage }}
