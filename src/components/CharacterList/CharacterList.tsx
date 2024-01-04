@@ -1,5 +1,5 @@
 import { useCharacters } from 'hooks/useCharacters';
-
+import { CharacterItemSkeleton } from 'components/CharacterItemSkeleton/CharacterItemSkeleton';
 import { CharacterItem } from 'components/CharacterItem/CharacterItem';
 
 import { CharacterListStyled } from './CharacterList.styled';
@@ -9,7 +9,9 @@ export const CharacterList = () => {
 
   return (
     <>
-      {isSuccess && characters.length > 0 && (
+      {isFetching && <CharacterItemSkeleton cards={10} />}
+
+      {isSuccess && !isFetching && characters.length > 0 && (
         <CharacterListStyled>
           {isSuccess &&
             characters?.map(character => (

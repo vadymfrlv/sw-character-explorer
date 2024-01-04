@@ -1,12 +1,27 @@
-import { CharacterItemInfoSkeleton, Name, Detail } from './CharacterItemSkeleton.styled';
+import {
+  CharacterListSkeleton,
+  CharacterItemInfoSkeleton,
+  Name,
+  Detail,
+} from './CharacterItemSkeleton.styled';
 
-export const CharacterItemSkeleton = () => {
+interface CharacterItemSkeletonProps {
+  cards: number;
+}
+
+export const CharacterItemSkeleton = ({ cards }: CharacterItemSkeletonProps) => {
   return (
-    <CharacterItemInfoSkeleton>
-      <Name />
-      <Detail />
-      <Detail />
-      <Detail />
-    </CharacterItemInfoSkeleton>
+    <CharacterListSkeleton>
+      {Array(cards)
+        .fill(0)
+        .map((_, idx) => (
+          <CharacterItemInfoSkeleton key={idx}>
+            <Name />
+            <Detail />
+            <Detail />
+            <Detail />
+          </CharacterItemInfoSkeleton>
+        ))}
+    </CharacterListSkeleton>
   );
 };
