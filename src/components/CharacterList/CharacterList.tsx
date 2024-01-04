@@ -1,4 +1,5 @@
 import { useCharacters } from 'hooks/useCharacters';
+import { ErrorBoundary } from 'components/Common/ErrorBoundary';
 import { CharacterItemSkeleton } from 'components/CharacterItemSkeleton/CharacterItemSkeleton';
 import { CharacterItem } from 'components/CharacterItem/CharacterItem';
 
@@ -8,7 +9,7 @@ export const CharacterList = () => {
   const { characters, currentPage, isSuccess, isFetching } = useCharacters();
 
   return (
-    <>
+    <ErrorBoundary>
       {isFetching && <CharacterItemSkeleton cards={10} />}
 
       {isSuccess && !isFetching && characters.length > 0 && (
@@ -24,6 +25,6 @@ export const CharacterList = () => {
             ))}
         </CharacterListStyled>
       )}
-    </>
+    </ErrorBoundary>
   );
 };
