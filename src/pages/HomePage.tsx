@@ -1,5 +1,11 @@
+import { CharacterList } from 'components/CharacterList/CharacterList';
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <CharacterList />
+    </>
+  );
 };
 
 export default HomePage;
