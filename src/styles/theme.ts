@@ -9,6 +9,12 @@ const theme = {
     regular: 400,
     medium: 500,
   },
+  screens: {
+    mob: BREAKPOINTS.MOB,
+    tab: BREAKPOINTS.TAB,
+    note: BREAKPOINTS.NOTE,
+    desk: BREAKPOINTS.DESK,
+  },
 };
 
 export default theme;
