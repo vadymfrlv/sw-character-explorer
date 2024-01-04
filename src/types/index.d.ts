@@ -1,3 +1,5 @@
+// <reference types="vite-plugin-svgr/client" />
+
 declare module '*.ttf';
 
 declare module '*.png';
