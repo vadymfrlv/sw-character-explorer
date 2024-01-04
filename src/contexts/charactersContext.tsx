@@ -10,8 +10,11 @@ export interface CharactersContextType {
   next: string | null;
   isSuccess: boolean;
   isFetching: boolean;
+  isPlaceholderData: boolean;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  onPageChange: (page: number) => void;
+  shouldShowPagination: boolean;
 }
 
 export const CharactersContext = createContext<CharactersContextType | undefined>(undefined);
@@ -27,11 +30,23 @@ export const CharactersProvider = ({ children }: CharactersProviderProps) => {
 
   const {
     data: characters = [],
+    totalCharacters = 1,
     prev: prev = null,
     next: next = null,
     isSuccess,
     isFetching,
+    isPlaceholderData,
   } = useCharactersQuery(currentPage, searchQuery);
+
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  const shouldShowPagination = isSuccess && characters && totalCharacters > 10;
 
   return (
     <CharactersContext.Provider
@@ -41,8 +56,11 @@ export const CharactersProvider = ({ children }: CharactersProviderProps) => {
         next,
         isSuccess,
         isFetching,
+        isPlaceholderData,
         currentPage,
         setCurrentPage,
+        onPageChange,
+        shouldShowPagination,
       }}
     >
       {children}
