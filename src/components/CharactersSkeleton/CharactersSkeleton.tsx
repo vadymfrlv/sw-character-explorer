@@ -3,13 +3,13 @@ import {
   CharacterItemInfoSkeleton,
   Name,
   Detail,
-} from './CharacterItemSkeleton.styled';
+} from './CharactersSkeleton.styled';
 
 interface CharacterItemSkeletonProps {
   cards: number;
 }
 
-export const CharacterItemSkeleton = ({ cards }: CharacterItemSkeletonProps) => {
+export const CharactersSkeleton = ({ cards }: CharacterItemSkeletonProps) => {
   return (
     <CharacterListSkeleton>
       {Array(cards)
