@@ -14,6 +14,8 @@ export interface CharactersContextType {
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   onPageChange: (page: number) => void;
+  searchQuery: string | undefined;
+  handleSearchSubmit: (characterName: string) => void;
   shouldShowPagination: boolean;
 }
 
@@ -26,6 +28,7 @@ interface CharactersProviderProps {
 export const CharactersProvider = ({ children }: CharactersProviderProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
+  const [initialSearchPage, setInitialSearchPage] = useState(1);
   const searchQuery = searchParams.get('search') ?? '';
 
   const {
@@ -46,6 +49,18 @@ export const CharactersProvider = ({ children }: CharactersProviderProps) => {
     });
   };
 
+  const handleSearchSubmit = (search: string) => {
+    if (search === '') {
+      setCurrentPage(initialSearchPage);
+    } else {
+      if (searchQuery === '') {
+        setInitialSearchPage(currentPage);
+      }
+      setCurrentPage(1);
+    }
+    setSearchParams({ search });
+  };
+
   const shouldShowPagination = isSuccess && characters && totalCharacters > 10;
 
   return (
@@ -60,6 +75,8 @@ export const CharactersProvider = ({ children }: CharactersProviderProps) => {
         currentPage,
         setCurrentPage,
         onPageChange,
+        searchQuery,
+        handleSearchSubmit,
         shouldShowPagination,
       }}
     >
