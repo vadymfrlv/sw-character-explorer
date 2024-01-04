@@ -19,4 +19,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  color: #ffffff;
+
+  background-size: 100%;
+  background-repeat: repeat-y;
+  background-image: url(../assets/images/main-bg-image.webp);
 }
