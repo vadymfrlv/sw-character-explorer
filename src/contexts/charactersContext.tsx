@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, useEffect, ReactNode } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useCharactersQuery } from 'hooks/queriesHooks/useCharactersQuery';
@@ -11,6 +11,7 @@ export interface CharactersContextType {
   isSuccess: boolean;
   isFetching: boolean;
   isPlaceholderData: boolean;
+  initialLoadComplete: boolean;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   onPageChange: (page: number) => void;
@@ -27,6 +28,7 @@ interface CharactersProviderProps {
 
 export const CharactersProvider = ({ children }: CharactersProviderProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [initialSearchPage, setInitialSearchPage] = useState(1);
   const searchQuery = searchParams.get('search') ?? '';
@@ -40,6 +42,12 @@ export const CharactersProvider = ({ children }: CharactersProviderProps) => {
     isFetching,
     isPlaceholderData,
   } = useCharactersQuery(currentPage, searchQuery);
+
+  useEffect(() => {
+    if (isSuccess && !initialLoadComplete) {
+      setInitialLoadComplete(true);
+    }
+  }, [isSuccess, initialLoadComplete]);
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
@@ -71,6 +79,7 @@ export const CharactersProvider = ({ children }: CharactersProviderProps) => {
         next,
         isSuccess,
         isFetching,
+        initialLoadComplete,
         isPlaceholderData,
         currentPage,
         setCurrentPage,
